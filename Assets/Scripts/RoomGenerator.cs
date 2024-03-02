@@ -7,22 +7,18 @@ using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class RandomWalkDungeonGenerator : MonoBehaviour
+public class RandomWalkDungeonGenerator : AbstractDungeonGenerator
 {
-    [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
-
     [SerializeField]
     private int iterations = 10;
     public int walkLength = 10;
     public bool startRandomlyEachIteration = true;
 
-    public void GenerateRoom()
+    protected override void GenerateRoom()
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk();
-        foreach (var position in floorPositions)
-        {
-            Debug.Log(position);
-        }
+        tilemapVisualizer.Clear();
+        tilemapVisualizer.PaintFloorTiles(floorPositions);
     }
 
     protected HashSet<Vector2Int> RunRandomWalk()
