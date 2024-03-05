@@ -21,5 +21,10 @@ public class DungeonEditor : Editor
       {
          _generator.GenerateDungeon();
       }
+
+      if (GUILayout.Button("Clear level"))
+      {
+         _generator.ClearDungeon();
+      }
    }
 }

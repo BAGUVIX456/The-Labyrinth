@@ -14,5 +14,10 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         GenerateRoom();
     }
 
+    public void ClearDungeon()
+    {
+        tilemapVisualizer.Clear();
+    }
+
     protected abstract void GenerateRoom();
 }
