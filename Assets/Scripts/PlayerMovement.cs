@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
     
     public PlayerControls playerControl;
-    private InputAction move;
+    private InputAction move, quit;
 
     private void Awake()
     {
@@ -22,17 +22,26 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         move = playerControl.Player.Move;
+        quit = playerControl.Player.Quit;
+        
         move.Enable();
+        quit.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
+        quit.Disable();
     }
 
     private void Update()
     {
         _movement = move.ReadValue<Vector2>();
+        
+        if (quit.ReadValue<float>() == 1)
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()
