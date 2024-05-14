@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4447623414229625093}
   - component: {fileID: 2412711456859237275}
   - component: {fileID: -8618146253875924997}
-  - component: {fileID: -7596135957741471998}
+  - component: {fileID: 2729705405555025279}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -102,6 +102,8 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 5
   distanceBetween: 0
+  minimumDistance: 0
+  distance: 0
 --- !u!61 &-8618146253875924997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &-7596135957741471998
+--- !u!50 &2729705405555025279
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -159,7 +161,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
