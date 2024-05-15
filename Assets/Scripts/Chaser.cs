@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Chaser : MonoBehaviour
 {
@@ -44,5 +46,10 @@ public class Chaser : MonoBehaviour
             
             changeDirectionCooldown = Random.Range(1f, 5f);
         }
+    }
+
+    private void OnCollisionStay2D()
+    {
+        changeDirectionCooldown = 0;
     }
 }
