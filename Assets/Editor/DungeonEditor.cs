@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+// Creates the CREATE DUNGEON and CLEAR LEVEL buttons for classes inheriting from AbstractDungeonGenerator
 using UnityEditor;
 using UnityEngine;
 

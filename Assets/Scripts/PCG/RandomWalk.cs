@@ -1,4 +1,5 @@
-using System.Collections;
+// Contains the actual Random Walk algorithm
+
 using System.Collections.Generic;
 using UnityEngine;
 

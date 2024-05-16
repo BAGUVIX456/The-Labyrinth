@@ -1,21 +1,18 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
-public class CorridorFirstGenerator : RandomWalkDungeonGenerator
+public class CorridorFirstGenerator : RoomGenerator
 {
     [SerializeField]
-    private int corridorLength = 14, corridorCount = 5;
+    private int corridorLength = 14;
     
     [SerializeField]
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
     
-    public RandomWalkSO roomGenerationParameters;
-    
+    // Call this function to run corridor first generation instead of generating a single room
     protected override void GenerateRoom()
     {
         CorridorFirstGeneration();
@@ -24,8 +21,11 @@ public class CorridorFirstGenerator : RandomWalkDungeonGenerator
     private void CorridorFirstGeneration()
     {
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+        
+        // Is a set of 2D coordinates where rooms can be built
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
-
+        
+        // Creates the corridors first
         List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomPositions);
 
         HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
@@ -33,7 +33,9 @@ public class CorridorFirstGenerator : RandomWalkDungeonGenerator
 
         for (int i = 0; i < corridors.Count; i++)
         {
-            corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
+            // Uncomment the following line to increase corridor size by one tile
+            //corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
+            
             floorPositions.UnionWith(corridors[i]);
         }
         
