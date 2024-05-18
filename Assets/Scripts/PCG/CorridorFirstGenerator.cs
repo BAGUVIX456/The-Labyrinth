@@ -11,6 +11,11 @@ public class CorridorFirstGenerator : RoomGenerator
     [SerializeField]
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
+
+    protected Dictionary<Vector2Int, HashSet<Vector2Int>> roomsDictionary =
+        new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+
+    protected HashSet<Vector2Int> floorPositions, corridorPositions;
     
     // Call this function to run corridor first generation instead of generating a single room
     protected override void GenerateRoom()
@@ -18,7 +23,7 @@ public class CorridorFirstGenerator : RoomGenerator
         CorridorFirstGeneration();
     }
 
-    private void CorridorFirstGeneration()
+    protected void CorridorFirstGeneration()
     {
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         
@@ -34,7 +39,7 @@ public class CorridorFirstGenerator : RoomGenerator
         for (int i = 0; i < corridors.Count; i++)
         {
             // Uncomment the following line to increase corridor size by one tile
-            //corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
+            corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
             
             floorPositions.UnionWith(corridors[i]);
         }
@@ -54,6 +59,7 @@ public class CorridorFirstGenerator : RoomGenerator
         foreach (var roomPosition in roomsToCreate)
         {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
+            roomsDictionary[roomPosition] = roomFloor;
             roomPositions.UnionWith(roomFloor);
         }
 
@@ -74,6 +80,8 @@ public class CorridorFirstGenerator : RoomGenerator
             potentialRoomPositions.Add(currentPosition);
             floorPositions.UnionWith(corridor);
         }
+
+        corridorPositions = new HashSet<Vector2Int>(floorPositions);
 
         return corridors;
     }

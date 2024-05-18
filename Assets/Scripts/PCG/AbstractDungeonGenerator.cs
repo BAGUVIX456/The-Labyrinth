@@ -17,6 +17,18 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     public void ClearDungeon()
     {
         tilemapVisualizer.Clear();
+
+        /*
+        while (true)
+        {
+            GameObject e = GameObject.Find("Enemy(Clone)");
+            
+            if (e) 
+                Destroy(e);
+            else 
+                break;
+        }
+        */
     }
 
     protected abstract void GenerateRoom();
