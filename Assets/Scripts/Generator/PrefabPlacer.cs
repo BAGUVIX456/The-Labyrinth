@@ -26,7 +26,7 @@ public class PrefabPlacer : CorridorFirstGenerator
         {
             if (firstRoom)
             {
-                Instantiate(player, new Vector3(room.Key.x, room.Key.y, 0), Quaternion.identity);
+                player.transform.position = new Vector3(room.Key.x, room.Key.y, 0);
                 firstRoom = false;
                 continue;
             }

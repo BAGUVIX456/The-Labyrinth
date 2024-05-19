@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a3d81f9937fb74f9c069a6be7b0f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8719260510014975365, guid: dfc9d0407930e63468ff4285505f61a7, type: 3}
+  player: {fileID: 5904780650407982048, guid: dfc9d0407930e63468ff4285505f61a7, type: 3}
   speed: 2
   maximumDistance: 5.5
   minimumDistance: 1.2
