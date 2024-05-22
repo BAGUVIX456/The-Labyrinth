@@ -39,7 +39,7 @@ public class CorridorFirstGenerator : RoomGenerator
         for (int i = 0; i < corridors.Count; i++)
         {
             // Uncomment the following line to increase corridor size by one tile
-            //corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
+            corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
             
             floorPositions.UnionWith(corridors[i]);
         }

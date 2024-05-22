@@ -34,7 +34,7 @@ public class PrefabPlacer : CorridorFirstGenerator
             ItemPlacementHelper iph = new ItemPlacementHelper(room.Value, room.Value);
 
             Vector2Int position = iph.GetItemPlacementPosition(PlacementType.OpenSpace, 5, new Vector2Int(1, 1), false);
-            for(int i=0; i<Random.Range(5, 10); i++)
+            for(int i=0; i<Random.Range(1, 3); i++)
             {
                 PlacePrefab(position);
                 position = iph.GetItemPlacementPosition(PlacementType.OpenSpace, 5, new Vector2Int(1, 1), false);
