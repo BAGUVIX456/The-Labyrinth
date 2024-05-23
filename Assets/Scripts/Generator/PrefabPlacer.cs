@@ -3,7 +3,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class PrefabPlacer : CorridorFirstGenerator
@@ -17,7 +16,7 @@ public class PrefabPlacer : CorridorFirstGenerator
         Instantiate(enemy, new Vector3(position.x, position.y, 0), Quaternion.identity);
     }
 
-    protected override void GenerateRoom()
+    protected override void GenerateFloor()
     {
         CorridorFirstGeneration();
 

@@ -17,7 +17,6 @@ public class NavMeshFollower : MonoBehaviour
     
     private float changeDirectionCooldown = 2f;
     private double angleChange;
-    [SerializeField]
     private float distance;
 
     private void Start()

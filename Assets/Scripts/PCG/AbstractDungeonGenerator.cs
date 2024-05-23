@@ -10,7 +10,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     public void GenerateDungeon()
     {
         tilemapVisualizer.Clear();
-        GenerateRoom();
+        GenerateFloor();
     }
 
     // Clears level
@@ -31,5 +31,5 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         */
     }
 
-    protected abstract void GenerateRoom();
+    protected abstract void GenerateFloor();
 }

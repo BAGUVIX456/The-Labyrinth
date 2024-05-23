@@ -5,13 +5,20 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoomGenerator : AbstractDungeonGenerator
+public class RoomGenerator_
 {
-    [SerializeField] protected RandomWalkSO randomWalkParameters;
+    private RandomWalkSO randomWalkParameters;
+    private TilemapVisualizer tilemapVisualizer;
+
+    public RoomGenerator_(RandomWalkSO randomWalkParameters, TilemapVisualizer tilemapVisualizer)
+    {
+        this.randomWalkParameters = randomWalkParameters;
+        this.tilemapVisualizer = tilemapVisualizer;
+    }
 
     // This can be used to generate a single room, not a series of rooms connected by corridors like CorridorFirstGenerator
     // This function is overriden again in CorridorFirstGenerator, run that to get a group of rooms
-    protected override void GenerateFloor()
+    public void GenerateRoom(Vector2Int startPosition)
     {
         // Hashset of all 2D coordinates that are marked as floor
         HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
@@ -21,11 +28,6 @@ public class RoomGenerator : AbstractDungeonGenerator
         
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
-    }
-
-    public void GenerateRoom()
-    {
-        GenerateFloor();
     }
     
     protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parameters, Vector2Int position)

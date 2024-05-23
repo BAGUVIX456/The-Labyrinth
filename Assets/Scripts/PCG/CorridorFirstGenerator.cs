@@ -18,7 +18,7 @@ public class CorridorFirstGenerator : RoomGenerator
     protected HashSet<Vector2Int> floorPositions, corridorPositions;
     
     // Call this function to run corridor first generation instead of generating a single room
-    protected override void GenerateRoom()
+    protected override void GenerateFloor()
     {
         CorridorFirstGeneration();
     }
