@@ -18,7 +18,9 @@ public class RoomGenerator_
 
     // This can be used to generate a single room, not a series of rooms connected by corridors like CorridorFirstGenerator
     // This function is overriden again in CorridorFirstGenerator, run that to get a group of rooms
-    public void GenerateRoom(Vector2Int startPosition)
+    //
+    // Returns the position of the wall that was removed to create a corridor
+    public Vector2Int GenerateRoom(Vector2Int startPosition)
     {
         // Hashset of all 2D coordinates that are marked as floor
         HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
@@ -27,7 +29,9 @@ public class RoomGenerator_
         //tilemapVisualizer.Clear();
         
         tilemapVisualizer.PaintFloorTiles(floorPositions);
-        WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+        var removedWall = WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+
+        return removedWall;
     }
     
     protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parameters, Vector2Int position)

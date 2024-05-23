@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 
 public static class WallGenerator
 {
-    // Returns positions of walls outlining a room
-    public static HashSet<Vector2Int> CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
+    // Returns position of removed wall outlining a room
+    public static Vector2Int CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
     {
         var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
         var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D.diagonalDirectionsList);
+
+        var toBeRemoved = basicWallPositions.ElementAt(Random.Range(0, basicWallPositions.Count));
+        basicWallPositions.Remove(toBeRemoved);
+        
         CreateBasicWalls(tilemapVisualizer, basicWallPositions, floorPositions);
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
 
-        return basicWallPositions;
+        return toBeRemoved;
     }
 
     private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> cornerWallPositions,

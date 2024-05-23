@@ -1,3 +1,9 @@
+/*
+ * TODO:
+ *  1. Generate spawn room (done)
+ *  2. Choose a wall to create a corridor in (bug: Outer wall needs to be removed, not the inner ones)
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
