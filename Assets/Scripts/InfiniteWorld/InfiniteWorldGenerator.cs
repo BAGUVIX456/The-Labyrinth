@@ -7,10 +7,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NavMeshPlus.Components;
 using UnityEngine;
 
 public class InfiniteWorldGenerator : MonoBehaviour
 {
+    public NavMeshSurface surface;
     public RandomWalkSO roomParameters;
     public TilemapVisualizer tilemapVisualizer;
 
@@ -18,7 +20,7 @@ public class InfiniteWorldGenerator : MonoBehaviour
 
     private void Start()
     {
-        roomGenerator = new RoomGenerator_(roomParameters, tilemapVisualizer);
+        roomGenerator = new RoomGenerator_(roomParameters, tilemapVisualizer, surface);
         roomGenerator.GenerateRoom(Vector2Int.zero);
     }
 

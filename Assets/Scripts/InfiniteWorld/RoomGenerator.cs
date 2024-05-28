@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using NavMeshPlus.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,11 +10,13 @@ public class RoomGenerator_
 {
     private RandomWalkSO randomWalkParameters;
     private TilemapVisualizer tilemapVisualizer;
+    private NavMeshSurface surface;
 
-    public RoomGenerator_(RandomWalkSO randomWalkParameters, TilemapVisualizer tilemapVisualizer)
+    public RoomGenerator_(RandomWalkSO randomWalkParameters, TilemapVisualizer tilemapVisualizer, NavMeshSurface surface)
     {
         this.randomWalkParameters = randomWalkParameters;
         this.tilemapVisualizer = tilemapVisualizer;
+        this.surface = surface;
     }
 
     // This can be used to generate a single room, not a series of rooms connected by corridors like CorridorFirstGenerator
@@ -30,6 +33,8 @@ public class RoomGenerator_
         
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         var removedWall = WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+        
+        surface.BuildNavMesh();
 
         return removedWall;
     }

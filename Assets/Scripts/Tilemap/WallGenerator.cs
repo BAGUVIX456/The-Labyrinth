@@ -6,14 +6,18 @@ using UnityEngine;
 
 public static class WallGenerator
 {
+    private static HashSet<Vector2Int> sideWalls = new();
+    
     // Returns position of removed wall outlining a room
     public static Vector2Int CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
     {
-        var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
-        var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D.diagonalDirectionsList);
+        sideWalls.Clear();
+        
+        var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D_.cardinalDirectionsList);
+        var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D_.diagonalDirectionsList);
 
-        var toBeRemoved = basicWallPositions.ElementAt(Random.Range(0, basicWallPositions.Count));
-        basicWallPositions.Remove(toBeRemoved);
+        var toBeRemoved = sideWalls.ElementAt(Random.Range(0, sideWalls.Count));
+        //basicWallPositions.Remove(toBeRemoved);
         
         CreateBasicWalls(tilemapVisualizer, basicWallPositions, floorPositions);
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
@@ -27,7 +31,7 @@ public static class WallGenerator
         foreach (var position in cornerWallPositions)
         {
             string neighboursBinaryType = "";
-            foreach (var direction in Direction2D.eightDirectionsList)
+            foreach (var direction in Direction2D_.eightDirectionsList)
             {
                 var neighbourPosition = position + direction;
                 if (floorPositions.Contains(neighbourPosition))
@@ -48,7 +52,7 @@ public static class WallGenerator
         foreach (var position in basicWallPositions)
         {
             string neighbooursBinaryType = "";
-            foreach (var direction in Direction2D.cardinalDirectionsList)
+            foreach (var direction in Direction2D_.cardinalDirectionsList)
             {
                 var neighbourPosition = position + direction;
                 if (floorPositions.Contains(neighbourPosition))
@@ -73,7 +77,13 @@ public static class WallGenerator
             {
                 var neighbourPosition = position + direction;
                 if (floorPositions.Contains(neighbourPosition) == false)
+                {
                     wallPositions.Add(neighbourPosition);
+
+                    if (directionList == Direction2D_.cardinalDirectionsList &&
+                        (direction == Vector2Int.left || direction == Vector2Int.right))
+                        sideWalls.Add(neighbourPosition);
+                }
             }
         }
 
