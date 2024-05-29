@@ -1,10 +1,13 @@
 // Contains the actual Random Walk algorithm
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class RandomWalk
 {
+    public static Vector2Int lastCorridorPosition = Vector2Int.zero;
+    
     public static HashSet<Vector2Int> Walk(Vector2Int startPosition, int walkLength)
     {
         HashSet<Vector2Int> path = new HashSet<Vector2Int>(); 
@@ -35,6 +38,22 @@ public static class RandomWalk
             corridor.Add(currentPosition);
         }
 
+        return corridor;
+    }
+
+    public static HashSet<Vector2Int> StraightCorridorWalk(Vector2Int startPosition, int corridorLength)
+    {
+        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
+        var currentPosition = startPosition;
+        corridor.Add(currentPosition);
+
+        for (int i = 0; i < corridorLength; i++)
+        {
+            currentPosition += new Vector2Int(1, 0);
+            corridor.Add(currentPosition);
+        }
+
+        lastCorridorPosition = currentPosition;
         return corridor;
     }
 }

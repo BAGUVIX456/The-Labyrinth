@@ -1589,6 +1589,7 @@ MonoBehaviour:
   surface: {fileID: 710315426}
   roomParameters: {fileID: 11400000, guid: f39e704650452e04faf22cbad4e73e1f, type: 2}
   tilemapVisualizer: {fileID: 1637942485}
+  corridorLength: 40
 --- !u!4 &2064515422
 Transform:
   m_ObjectHideFlags: 0

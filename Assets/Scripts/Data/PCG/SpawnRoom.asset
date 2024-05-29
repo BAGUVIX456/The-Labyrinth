@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22551a28885ad954cb28bd91ed3cf236, type: 3}
   m_Name: SpawnRoom
   m_EditorClassIdentifier: 
-  iterations: 30
-  walkLength: 30
+  iterations: 50
+  walkLength: 50
   startRandomlyEachIteration: 0

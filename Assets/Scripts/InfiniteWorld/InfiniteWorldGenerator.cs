@@ -1,14 +1,8 @@
-/*
- * TODO:
- *  1. Generate spawn room (done)
- *  2. Choose a wall to create a corridor in (bug: Outer wall needs to be removed, not the inner ones)
- */
-
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NavMeshPlus.Components;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InfiniteWorldGenerator : MonoBehaviour
 {
@@ -16,16 +10,38 @@ public class InfiniteWorldGenerator : MonoBehaviour
     public RandomWalkSO roomParameters;
     public TilemapVisualizer tilemapVisualizer;
 
+    public int corridorLength = 20;
+    public int numberOfRooms = 10;
+
     private RoomGenerator_ roomGenerator;
+    private CorridorGenerator_ corridorGenerator;
+    
+    private HashSet<Vector2Int> floor = new();
+    private List<HashSet<Vector2Int>> roomTiles = new();
 
     private void Start()
     {
-        roomGenerator = new RoomGenerator_(roomParameters, tilemapVisualizer, surface);
-        roomGenerator.GenerateRoom(Vector2Int.zero);
+        roomGenerator = new RoomGenerator_(roomParameters, tilemapVisualizer);
+        corridorGenerator = new CorridorGenerator_();
+        GenerateRoomCorridorPair(Vector2Int.zero);
+        
+        for(int i=0; i<numberOfRooms-1; i++)
+            GenerateRoomCorridorPair(corridorGenerator.corridorEnd);
+        
+        tilemapVisualizer.PaintFloorTiles(floor);
+        WallGenerator.CreateWalls(floor, tilemapVisualizer);
+        
+        surface.BuildNavMesh();
     }
 
-    private void Update()
+    private void GenerateRoomCorridorPair(Vector2Int startPosition)
     {
+        HashSet<Vector2Int> room = roomGenerator.GenerateRoom(startPosition);
+        roomTiles.Add(room);
         
+        HashSet<Vector2Int> corridor = corridorGenerator.GenerateCorridor(room.ElementAt(Random.Range(0, room.Count)), corridorLength); 
+        
+        room.UnionWith(corridor);
+        floor.UnionWith(room);
     }
 }
