@@ -23,10 +23,10 @@ public class InfiniteWorldGenerator : MonoBehaviour
     {
         roomGenerator = new RoomGenerator(roomParameters, tilemapVisualizer);
         corridorGenerator = new CorridorGenerator();
-        GenerateRoomCorridorPair(Vector2Int.zero);
+        GenerateRoomCorridorPair(Vector2Int.zero, true);
         
         for(int i=0; i<numberOfRooms-1; i++)
-            GenerateRoomCorridorPair(corridorGenerator.corridorEnd);
+            GenerateRoomCorridorPair(corridorGenerator.corridorEnd, i != numberOfRooms-2);
         
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
@@ -34,12 +34,14 @@ public class InfiniteWorldGenerator : MonoBehaviour
         surface.BuildNavMesh();
     }
 
-    private void GenerateRoomCorridorPair(Vector2Int startPosition)
+    private void GenerateRoomCorridorPair(Vector2Int startPosition, bool createCorridor)
     {
         HashSet<Vector2Int> room = roomGenerator.GenerateRoom(startPosition);
         roomTiles.Add(room);
         
-        HashSet<Vector2Int> corridor = corridorGenerator.GenerateCorridor(room.ElementAt(Random.Range(0, room.Count)), corridorLength); 
+        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
+        if(createCorridor)
+            corridor = corridorGenerator.GenerateCorridor(room.ElementAt(Random.Range(0, room.Count)), corridorLength); 
         
         room.UnionWith(corridor);
         floor.UnionWith(room);
