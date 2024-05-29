@@ -13,16 +13,16 @@ public class InfiniteWorldGenerator : MonoBehaviour
     public int corridorLength = 20;
     public int numberOfRooms = 10;
 
-    private RoomGenerator_ roomGenerator;
-    private CorridorGenerator_ corridorGenerator;
+    private RoomGenerator roomGenerator;
+    private CorridorGenerator corridorGenerator;
     
     private HashSet<Vector2Int> floor = new();
     private List<HashSet<Vector2Int>> roomTiles = new();
 
     private void Start()
     {
-        roomGenerator = new RoomGenerator_(roomParameters, tilemapVisualizer);
-        corridorGenerator = new CorridorGenerator_();
+        roomGenerator = new RoomGenerator(roomParameters, tilemapVisualizer);
+        corridorGenerator = new CorridorGenerator();
         GenerateRoomCorridorPair(Vector2Int.zero);
         
         for(int i=0; i<numberOfRooms-1; i++)

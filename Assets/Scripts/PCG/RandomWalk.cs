@@ -1,7 +1,6 @@
 // Contains the actual Random Walk algorithm
 
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class RandomWalk

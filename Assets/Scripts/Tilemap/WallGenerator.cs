@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 using UnityEngine;
 
 public static class WallGenerator
@@ -9,8 +6,8 @@ public static class WallGenerator
     public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
     {
         
-        var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D_.cardinalDirectionsList);
-        var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D_.diagonalDirectionsList);
+        var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
+        var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D.diagonalDirectionsList);
         
         CreateBasicWalls(tilemapVisualizer, basicWallPositions, floorPositions);
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
@@ -22,7 +19,7 @@ public static class WallGenerator
         foreach (var position in cornerWallPositions)
         {
             string neighboursBinaryType = "";
-            foreach (var direction in Direction2D_.eightDirectionsList)
+            foreach (var direction in Direction2D.eightDirectionsList)
             {
                 var neighbourPosition = position + direction;
                 if (floorPositions.Contains(neighbourPosition))
@@ -43,7 +40,7 @@ public static class WallGenerator
         foreach (var position in basicWallPositions)
         {
             string neighbooursBinaryType = "";
-            foreach (var direction in Direction2D_.cardinalDirectionsList)
+            foreach (var direction in Direction2D.cardinalDirectionsList)
             {
                 var neighbourPosition = position + direction;
                 if (floorPositions.Contains(neighbourPosition))
