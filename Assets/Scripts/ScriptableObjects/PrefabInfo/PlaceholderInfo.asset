@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e7c3f3957e88944b259a035e09fed7, type: 3}
-  m_Name: Hostile
+  m_Script: {fileID: 11500000, guid: 4ca936bddc4405344a20158ba7ecd4ad, type: 3}
+  m_Name: PlaceholderInfo
   m_EditorClassIdentifier: 
-  hello: 1
+  Mob:
+  - {fileID: 11400000, guid: cd1ef0e78c6c358448e3c9a0eb626e0c, type: 2}

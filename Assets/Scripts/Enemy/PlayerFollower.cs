@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +8,7 @@ public class NavMeshFollower : MonoBehaviour
     public float chaseSpeed;
     public float wanderSpeed;
     
-    [SerializeField] private Transform target;
+    public GameObject target;
 
     private NavMeshAgent agent;
     
@@ -25,16 +22,18 @@ public class NavMeshFollower : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = chaseSpeed;
+
+        target = GameObject.Find("Player");
     }
 
     void Update()
     {
         GetRandomDirectionChange();
-        distance = Vector2.Distance(transform.position, target.position);
+        distance = Vector2.Distance(transform.position, target.transform.position);
 
         if (distance < maxDistance && distance > minDistance)
         {
-            agent.SetDestination(target.position);
+            agent.SetDestination(target.transform.position);
         }
         else if (distance > maxDistance)
         {
@@ -61,7 +60,7 @@ public class NavMeshFollower : MonoBehaviour
         }
     }
     
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
         changeDirectionCooldown = 0;
     }
