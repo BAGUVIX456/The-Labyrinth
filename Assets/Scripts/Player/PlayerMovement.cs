@@ -73,14 +73,14 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("Speed", 0);
         }
-        else if (_movement == Vector2.right && isFacingLeft)
+        else if (_movement.x > 0 && isFacingLeft)
         {
             isFacingLeft = false;
             Flip();
             if(!isAttacking)
                 animator.SetFloat("Speed", 5);
         }
-        else if (_movement == Vector2.left && !isFacingLeft)
+        else if (_movement.x < 0 && !isFacingLeft)
         {
             isFacingLeft = true;
             Flip();
