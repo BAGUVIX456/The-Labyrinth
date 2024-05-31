@@ -6,14 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
+    
     public float speed = 5f;
+    public float attackCooldown = 0.1f;
+    private float attackCooldownActual;
 
     private Vector2 _movement;
     private Vector2 facingLeft;
-    private bool isFacingLeft = false;
+    private bool isFacingLeft;
+    private bool isAttacking;
     
     public PlayerControls playerControl;
-    private InputAction move, quit;
+    private InputAction move, quit, attack;
 
     private void Awake()
     {
@@ -24,15 +28,18 @@ public class PlayerMovement : MonoBehaviour
     {
         move = playerControl.Player.Move;
         quit = playerControl.Player.Quit;
+        attack = playerControl.Player.Fire;
         
         move.Enable();
         quit.Enable();
+        attack.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
         quit.Disable();
+        attack.Disable();
     }
 
     private void Start()
@@ -40,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
+        attackCooldownActual = attackCooldown;
     }
 
     private void Flip()
@@ -56,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isAttacking)
+            attackCooldownActual -= Time.deltaTime;
+        
         _movement = move.ReadValue<Vector2>();
 
         if (_movement == Vector2.zero)
@@ -66,25 +77,42 @@ public class PlayerMovement : MonoBehaviour
         {
             isFacingLeft = false;
             Flip();
-            animator.SetFloat("Speed", 5);
+            if(!isAttacking)
+                animator.SetFloat("Speed", 5);
         }
         else if (_movement == Vector2.left && !isFacingLeft)
         {
             isFacingLeft = true;
             Flip();
-            animator.SetFloat("Speed", 5);
+            if(!isAttacking)
+                animator.SetFloat("Speed", 5);
         }
         else
         {
-            animator.SetFloat("Speed", 5);
+            if(!isAttacking)
+                animator.SetFloat("Speed", 5);
         }
-        
+
+        if (attack.ReadValue<float>() == 1)
+        {
+            animator.SetBool("Attack", true);
+            isAttacking = true;
+            attackCooldownActual = attackCooldown;
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
+            if(attackCooldownActual <= 0)
+                isAttacking = false;
+        }
+
         if (quit.ReadValue<float>() == 1)
             Application.Quit();
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + _movement * (speed * Time.fixedDeltaTime));
+        if(!isAttacking)
+            rb.MovePosition(rb.position + _movement * (speed * Time.fixedDeltaTime));
     }
 }
