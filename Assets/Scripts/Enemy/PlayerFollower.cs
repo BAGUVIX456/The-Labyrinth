@@ -8,7 +8,7 @@ public class NavMeshFollower : MonoBehaviour
     public float chaseSpeed;
     public float wanderSpeed;
     
-    public GameObject target;
+    private GameObject target;
 
     private NavMeshAgent agent;
     
