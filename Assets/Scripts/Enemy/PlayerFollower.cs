@@ -1,4 +1,8 @@
-using System;
+/* BUGS:
+ *  2. ENEMY PLAYS ANIMATIONS OF WANDER EVEN WHEN CHASING
+ */
+
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -18,6 +22,7 @@ public class NavMeshFollower : MonoBehaviour
     private double angleChange;
     private float distance;
     private float wanderSpeedActual;
+    private float initialPosition;
 
     private void Start()
     {
@@ -28,6 +33,7 @@ public class NavMeshFollower : MonoBehaviour
         agent.updateUpAxis = false;
         agent.speed = chaseSpeed;
         wanderSpeedActual = wanderSpeed;
+        initialPosition = transform.position.x;
 
         target = GameObject.Find("Player");
     }
@@ -39,23 +45,29 @@ public class NavMeshFollower : MonoBehaviour
 
         if (distance < maxDistance && distance > minDistance)
         {
+            animator.SetFloat("WalkSpeed", 101);
             agent.SetDestination(target.transform.position);
         }
         else if (distance > maxDistance)
         {
+            animator.SetFloat("WalkSpeed", wanderSpeedActual);
             Vector3 toMove = new Vector3((float)System.Math.Cos(angleChange), (float)System.Math.Sin(angleChange), 0);
-            if (toMove.x > 0)
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            else
-                transform.eulerAngles = new Vector3(0, 180, 0);
             
             transform.position =
                 Vector2.MoveTowards(transform.position, transform.position + toMove * 5, wanderSpeedActual * Time.deltaTime);
         }
         else
         {
+            animator.SetFloat("WalkSpeed", 0);
             agent.ResetPath();
         }
+        
+        if(transform.position.x > initialPosition)
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        else if (transform.position.x < initialPosition)
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        
+        initialPosition = transform.position.x;
     }
     
     private void GetRandomDirectionChange()
@@ -72,11 +84,10 @@ public class NavMeshFollower : MonoBehaviour
         else
             wanderSpeedActual = 0;
         
-        animator.SetFloat("WalkSpeed", wanderSpeedActual);
         changeDirectionCooldown = Random.Range(1f, 5f);
     }
     
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         changeDirectionCooldown = 0;
     }
