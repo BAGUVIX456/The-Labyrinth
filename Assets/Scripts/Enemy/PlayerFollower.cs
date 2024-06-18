@@ -1,11 +1,6 @@
-/* BUGS:
- *  2. ENEMY PLAYS ANIMATIONS OF WANDER EVEN WHEN CHASING
- */
-
-using TreeEditor;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class NavMeshFollower : MonoBehaviour
 {
@@ -23,6 +18,8 @@ public class NavMeshFollower : MonoBehaviour
     private float distance;
     private float wanderSpeedActual;
     private float initialPosition;
+    private float attackCooldown = 5f;
+    private bool attackBlocked;
 
     private void Start()
     {
@@ -60,6 +57,7 @@ public class NavMeshFollower : MonoBehaviour
         {
             animator.SetFloat("WalkSpeed", 0);
             agent.ResetPath();
+            AttackPlayer();
         }
         
         if(transform.position.x > initialPosition)
@@ -85,6 +83,21 @@ public class NavMeshFollower : MonoBehaviour
             wanderSpeedActual = 0;
         
         changeDirectionCooldown = Random.Range(1f, 5f);
+    }
+
+    private void AttackPlayer()
+    {
+        if (attackBlocked)
+            return;
+        animator.SetTrigger("Attack");
+        attackBlocked = true;
+        StartCoroutine(DelayAttack());
+    }
+
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        attackBlocked = false;
     }
     
     private void OnTriggerEnter2D(Collider2D other)
