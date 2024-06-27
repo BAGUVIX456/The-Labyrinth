@@ -8,6 +8,7 @@ public class NavMeshFollower : MonoBehaviour
     public float minDistance;
     public float chaseSpeed;
     public float wanderSpeed;
+    public float attackCooldown = 5f;
     
     private GameObject target;
     private NavMeshAgent agent;
@@ -18,7 +19,6 @@ public class NavMeshFollower : MonoBehaviour
     private float distance;
     private float wanderSpeedActual;
     private float initialPosition;
-    private float attackCooldown = 5f;
     private bool attackBlocked;
 
     private void Start()

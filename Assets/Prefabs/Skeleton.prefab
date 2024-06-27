@@ -196,9 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5
-  minDistance: 1.2
+  minDistance: 1.5
   chaseSpeed: 2.5
   wanderSpeed: 1
+  attackCooldown: 2
 --- !u!95 &4878378914348546474
 Animator:
   serializedVersion: 5

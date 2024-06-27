@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4730c4c2bd154484495b6d63f238110f, type: 3}
+  m_Name: Hearts
+  m_EditorClassIdentifier: 
+  fullHeart: {fileID: 5386868960355048814, guid: 7cdcfd4108d79c24aa45d93675fabb53, type: 3}
+  emptyHeart: {fileID: 0}
+  quarterHeart: {fileID: 0}
+  halfHeart: {fileID: 0}
+  threeQuarterHeart: {fileID: 0}
