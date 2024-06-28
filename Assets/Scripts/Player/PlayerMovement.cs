@@ -94,19 +94,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (attack.ReadValue<float>() == 1)
         {
-            animator.SetBool("Attack", true);
+            animator.SetTrigger("Attack");
             isAttacking = true;
             attackCooldownActual = attackCooldown;
         }
         else
         {
-            animator.SetBool("Attack", false);
             if(attackCooldownActual <= 0)
                 isAttacking = false;
         }
 
         if (quit.ReadValue<float>() == 1)
             Application.Quit();
+    }
+
+    void Attack()
+    {
+        
     }
 
     private void FixedUpdate()
