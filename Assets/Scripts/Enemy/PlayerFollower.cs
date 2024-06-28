@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshFollower : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public float maxDistance;
     public float minDistance;
     public float chaseSpeed;
     public float wanderSpeed;
     public float attackCooldown = 5f;
+    public int maxHealth;
     
     private GameObject target;
     private NavMeshAgent agent;
@@ -20,6 +21,7 @@ public class NavMeshFollower : MonoBehaviour
     private float wanderSpeedActual;
     private float initialPosition;
     private bool attackBlocked;
+    private int currentHealth;
 
     private void Start()
     {
@@ -31,6 +33,7 @@ public class NavMeshFollower : MonoBehaviour
         agent.speed = chaseSpeed;
         wanderSpeedActual = wanderSpeed;
         initialPosition = transform.position.x;
+        currentHealth = maxHealth;
 
         target = GameObject.Find("Player");
     }
@@ -94,6 +97,25 @@ public class NavMeshFollower : MonoBehaviour
         StartCoroutine(DelayAttack());
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        animator.SetTrigger("Hurt");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        animator.SetBool("isDead", true);
+        GetComponent<Collider2D>().enabled = false;
+
+        this.enabled = false;
+    }
+    
     private IEnumerator DelayAttack()
     {
         yield return new WaitForSeconds(attackCooldown);

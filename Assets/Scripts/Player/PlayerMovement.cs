@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
     
     public float speed = 5f;
     public float attackCooldown = 0.1f;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+    public int attackDamage;
     private float attackCooldownActual;
 
     private Vector2 _movement;
     private Vector2 facingLeft;
     private bool isFacingLeft;
     private bool isAttacking;
+    private bool attackPressed;
     
     public PlayerControls playerControl;
     private InputAction move, quit, attack;
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         attackCooldownActual = attackCooldown;
+        attackPressed = false;
     }
 
     private void Flip()
@@ -92,16 +99,18 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetFloat("Speed", 5);
         }
 
-        if (attack.ReadValue<float>() == 1)
+        if (attack.ReadValue<float>() == 1 && !attackPressed)
         {
-            animator.SetTrigger("Attack");
+            Attack();
             isAttacking = true;
             attackCooldownActual = attackCooldown;
+            attackPressed = true;
         }
-        else
+        else if (attack.ReadValue<float>() != 1)
         {
             if(attackCooldownActual <= 0)
                 isAttacking = false;
+            attackPressed = false;
         }
 
         if (quit.ReadValue<float>() == 1)
@@ -110,12 +119,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Attack()
     {
-        
+        animator.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
     }
 
     private void FixedUpdate()
     {
         if(!isAttacking)
             rb.MovePosition(rb.position + _movement * (speed * Time.fixedDeltaTime));
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+            
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

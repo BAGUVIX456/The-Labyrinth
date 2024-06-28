@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2496690154642035223}
   - component: {fileID: 8773873701004210146}
   - component: {fileID: 4878378914348546474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.061212897, y: 0.06710788}
@@ -200,6 +200,7 @@ MonoBehaviour:
   chaseSpeed: 2.5
   wanderSpeed: 1
   attackCooldown: 2
+  maxHealth: 100
 --- !u!95 &4878378914348546474
 Animator:
   serializedVersion: 5
