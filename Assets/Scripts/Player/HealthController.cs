@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +5,18 @@ public class HealthController : MonoBehaviour
 {
     private int maxHeartAmount = 10;
     public int startHeart = 3;
-    private int currentHealth;
+    public int currentHealth;
     private int maxHealth;
     private int healthPerHeart = 2;
+
+    private Animator animator;
     
     public Image[] heartImages;
     public Sprite[] heartSprites;
     
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = startHeart * healthPerHeart;
         maxHealth = maxHeartAmount * healthPerHeart;
         checkHealthAmount();
@@ -73,7 +73,13 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        animator.SetTrigger("Hurt");
         UpdateHearts();
+
+        if (currentHealth <= 0)
+        {
+            animator.SetBool("isDead", true);
+        }
     }
 
     public void AddHeartContainer()

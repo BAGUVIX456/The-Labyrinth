@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,10 +12,15 @@ public class Enemy : MonoBehaviour
     public float wanderSpeed;
     public float attackCooldown = 5f;
     public int maxHealth;
+    public Transform attackPoint;
+    public float attackRange;
+    public LayerMask playerLayer;
+    public int attackDamage;
     
     private GameObject target;
     private NavMeshAgent agent;
     private Animator animator;
+    private HealthController playerHealthController;
     
     private float changeDirectionCooldown = 2f;
     private double angleChange;
@@ -36,10 +43,14 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
 
         target = GameObject.Find("Player");
+        playerHealthController = target.GetComponent<HealthController>();
     }
 
     void Update()
     {
+        if (playerHealthController.currentHealth <= 0)
+            this.enabled = false;
+        
         GetRandomDirectionChange();
         distance = Vector2.Distance(transform.position, target.transform.position);
 
@@ -63,10 +74,10 @@ public class Enemy : MonoBehaviour
             AttackPlayer();
         }
         
-        if(transform.position.x > initialPosition)
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        else if (transform.position.x < initialPosition)
-            transform.eulerAngles = new Vector3(0, 180, 0);
+        if (transform.position.x < initialPosition)
+            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+        else if (transform.position.x > initialPosition)
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         
         initialPosition = transform.position.x;
     }
@@ -92,9 +103,18 @@ public class Enemy : MonoBehaviour
     {
         if (attackBlocked)
             return;
+        
         animator.SetTrigger("Attack");
         attackBlocked = true;
         StartCoroutine(DelayAttack());
+    }
+
+    private void HurtPlayer()
+    {
+        Collider2D hitPlayer =
+            Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+        if (hitPlayer != null)
+            playerHealthController.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(int damage)
@@ -125,5 +145,13 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         changeDirectionCooldown = 0;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
