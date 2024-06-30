@@ -1,15 +1,44 @@
+using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenuControls : MonoBehaviour
 {
-    public void StartButtonControl()
+    public GameObject loadingScreen;
+    public Slider slider;
+    public TextMeshProUGUI progressText;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Dungeon");
+        loadingScreen.SetActive(false);
     }
 
+    public void StartButtonControl()
+    {
+        StartCoroutine(LoadScene("Dungeon"));
+    }
+    
     public void QuitButtonControl()
     {
         Application.Quit();
+    }
+    
+    IEnumerator LoadScene(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        
+        loadingScreen.SetActive(true);
+        
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            slider.value = progress;
+            progressText.text = (int)(progress * 100f) + "%";
+            
+            yield return null;
+        }
     }
 }

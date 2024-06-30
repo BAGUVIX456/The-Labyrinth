@@ -2158,7 +2158,7 @@ MonoBehaviour:
   tilemapVisualizer: {fileID: 1637942485}
   enemyInfo: {fileID: 11400000, guid: 059344065acd5b84a973df76a18aad33, type: 2}
   corridorLength: 40
-  numberOfRooms: 10
+  numberOfRooms: 200
 --- !u!4 &2064515422
 Transform:
   m_ObjectHideFlags: 0
@@ -2489,6 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHeart: 3
+  currentHealth: 0
   heartImages:
   - {fileID: 423770996}
   - {fileID: 939789969}
