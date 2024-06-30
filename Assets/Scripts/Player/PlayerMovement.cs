@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool attackPressed;
     
     public PlayerControls playerControl;
-    private InputAction move, quit, attack;
+    private InputAction move, attack;
 
     private void Awake()
     {
@@ -32,18 +32,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         move = playerControl.Player.Move;
-        quit = playerControl.Player.Quit;
         attack = playerControl.Player.Fire;
         
         move.Enable();
-        quit.Enable();
         attack.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
-        quit.Disable();
         attack.Disable();
     }
 
@@ -112,9 +109,6 @@ public class PlayerMovement : MonoBehaviour
                 isAttacking = false;
             attackPressed = false;
         }
-
-        if (quit.ReadValue<float>() == 1)
-            Application.Quit();
     }
 
     void Attack()

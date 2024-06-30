@@ -34,7 +34,8 @@ public class StartMenuControls : MonoBehaviour
         
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            // float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            float progress = operation.progress;
             slider.value = progress;
             progressText.text = (int)(progress * 100f) + "%";
             
