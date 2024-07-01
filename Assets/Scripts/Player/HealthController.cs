@@ -9,6 +9,7 @@ public class HealthController : MonoBehaviour
     private int maxHealth;
     private int healthPerHeart = 2;
 
+    public GameManager gameManager;
     private Animator animator;
     
     public Image[] heartImages;
@@ -79,6 +80,7 @@ public class HealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
+            gameManager.GameOver();
         }
     }
 

@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerControls playerControl;
     public GameObject pauseMenuUI;
+    public GameObject gameOverUI;
     public PlayerMovement PlayerMovement;
     public static bool isGamePaused = false;
+    public static bool isGameOver = false;
 
     private InputAction quit;
     private bool pauseButtonIsPressed = false;
@@ -30,11 +33,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     private void Update()
     {
-        if (quit.ReadValue<float>() == 1 && !pauseButtonIsPressed)
+        if (quit.ReadValue<float>() == 1 && !pauseButtonIsPressed && !isGameOver)
         {
             pauseButtonIsPressed = true;
 
@@ -67,6 +71,23 @@ public class GameManager : MonoBehaviour
         PlayerMovement.enabled = false;
         Time.timeScale = 0f;
         isGamePaused = true;
+    }
+    
+    public void GameOver()
+    {
+        isGameOver = true;
+        gameOverUI.SetActive(true);
+        PlayerMovement.enabled = false;
+        Time.timeScale = 0f;
+    }
+    
+    public void RestartGame()
+    {
+        isGameOver = false;
+        gameOverUI.SetActive(false);
+        PlayerMovement.enabled = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Dungeon");
     }
 
     public void QuitGame()
