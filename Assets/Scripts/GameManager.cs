@@ -1,9 +1,7 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PauseMenu : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public PlayerControls playerControl;
     public GameObject pauseMenuUI;
