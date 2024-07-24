@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 2496690154642035223}
   - component: {fileID: 8773873701004210146}
   - component: {fileID: 4878378914348546474}
+  - component: {fileID: -3710421746066580666}
+  - component: {fileID: -7684782994217369407}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Untagged
@@ -260,3 +262,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3710421746066580666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872124474934331328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: 0.11482847, y: 0.0042937994, z: 0}
+  - {x: 0.12530363, y: 0.22637531, z: 0}
+  - {x: 0.12342171, y: 0.22732899, z: 0}
+  - {x: 0.11250405, y: 0.003528317, z: 0}
+  m_ShapePathHash: -232064187
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 37934
+  m_LocalBounds:
+    m_Center: {x: 0.11890384, y: 0.11542866, z: 0}
+    m_Extent: {x: 0.006399788, y: 0.11190034, z: 0}
+--- !u!114 &-7684782994217369407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872124474934331328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f48a8d66b2adc46887f23a3a88ac01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0

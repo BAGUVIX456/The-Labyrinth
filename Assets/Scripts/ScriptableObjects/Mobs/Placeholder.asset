@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Placeholder
   m_EditorClassIdentifier: 
   sprite: {fileID: 1872124474934331328, guid: 7da82e4aa535a884f865c56679f8b817, type: 3}
-  max: 5
-  min: 3
+  max: 10
+  min: 9
