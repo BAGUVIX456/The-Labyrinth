@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    public void PlayFootstep(AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
         audioSource.clip = clip;
         audioSource.PlayOneShot(clip);

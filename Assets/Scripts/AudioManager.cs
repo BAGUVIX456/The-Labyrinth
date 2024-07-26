@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
 
     public AudioClip bgm1;
-    public AudioClip skeletonDeath;
 
     private void Start()
     {

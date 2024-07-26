@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public LayerMask playerLayer;
     public int attackDamage;
-    public AudioManager audiomanager;
+    public AudioSource audioSource;
     
     private GameObject target;
     private NavMeshAgent agent;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -136,7 +136,6 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        audiomanager.PlaySFX(audiomanager.skeletonDeath);
         animator.SetBool("isDead", true);
         GetComponent<Collider2D>().enabled = false;
 
@@ -160,5 +159,11 @@ public class Enemy : MonoBehaviour
             return;
         
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 }
