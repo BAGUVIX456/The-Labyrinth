@@ -27,7 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.215, y: 0.181, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1869340329688497245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,12 +237,13 @@ MonoBehaviour:
   attackCooldown: 1
   maxHealth: 100
   attackPoint: {fileID: 5798760896849336566}
-  attackRange: 0.74
+  attackRange: 1.05
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 1
   audioSource: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!95 &4878378914348546474
 Animator:
   serializedVersion: 5
@@ -290,7 +291,7 @@ MonoBehaviour:
   - {x: 0.11250405, y: 0.003528317, z: 0}
   m_ShapePathHash: -232064187
   m_Mesh: {fileID: 0}
-  m_InstanceId: -114688
+  m_InstanceId: -50632
   m_LocalBounds:
     m_Center: {x: 0.11890384, y: 0.11542866, z: 0}
     m_Extent: {x: 0.006399788, y: 0.11190034, z: 0}

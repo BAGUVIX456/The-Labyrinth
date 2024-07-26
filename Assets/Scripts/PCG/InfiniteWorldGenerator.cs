@@ -10,6 +10,7 @@ public class InfiniteWorldGenerator : MonoBehaviour
     public RandomWalkSO roomParameters;
     public TilemapVisualizer tilemapVisualizer;
     public EnemyInfoSO enemyInfo;
+    public GameManager manager;
 
     public int corridorLength = 20;
     public int numberOfRooms = 10;
@@ -29,7 +30,10 @@ public class InfiniteWorldGenerator : MonoBehaviour
         for (int i = 0; i < numberOfRooms - 1; i++)
         {
             GenerateRoomCorridorPair(corridorGenerator.corridorEnd, i != numberOfRooms - 2);
-            PrefabPlacer.PlaceMobs(enemyInfo, roomTiles.Last());
+            int numberOfMobs = Random.Range(enemyInfo.Mob[0].min, enemyInfo.Mob[0].max);
+            PrefabPlacer.PlaceMobs(enemyInfo, roomTiles.Last(), numberOfMobs);
+            manager.enemyCount += numberOfMobs;
+            manager.UpdateCounter();
         }
 
         tilemapVisualizer.PaintFloorTiles(floor);

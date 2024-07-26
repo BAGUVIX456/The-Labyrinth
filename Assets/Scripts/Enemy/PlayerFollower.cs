@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
     public int attackDamage;
     public AudioSource audioSource;
+    public GameManager manager;
     
     private GameObject target;
     private NavMeshAgent agent;
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -136,6 +138,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        manager.enemyCount--;
+        manager.UpdateCounter();
+        
         animator.SetBool("isDead", true);
         GetComponent<Collider2D>().enabled = false;
 

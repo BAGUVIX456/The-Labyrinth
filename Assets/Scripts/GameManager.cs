@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,9 +8,11 @@ public class GameManager : MonoBehaviour
     public PlayerControls playerControl;
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
+    public TextMeshProUGUI EnemyCounter;
     public PlayerMovement PlayerMovement;
     public static bool isGamePaused = false;
     public static bool isGameOver = false;
+    public int enemyCount;
 
     private InputAction quit;
     private bool pauseButtonIsPressed = false;
@@ -17,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         playerControl = new PlayerControls();
+        enemyCount = 0;
     }
 
     private void OnEnable()
@@ -93,5 +97,10 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void UpdateCounter()
+    {
+        EnemyCounter.text = "Enemies Remaining: " + enemyCount;
     }
 }
