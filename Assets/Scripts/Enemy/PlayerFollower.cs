@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public LayerMask playerLayer;
     public int attackDamage;
+    public AudioManager audiomanager;
     
     private GameObject target;
     private NavMeshAgent agent;
@@ -29,6 +30,11 @@ public class Enemy : MonoBehaviour
     private float initialPosition;
     private bool attackBlocked;
     private int currentHealth;
+
+    private void Awake()
+    {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -130,6 +136,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        audiomanager.PlaySFX(audiomanager.skeletonDeath);
         animator.SetBool("isDead", true);
         GetComponent<Collider2D>().enabled = false;
 

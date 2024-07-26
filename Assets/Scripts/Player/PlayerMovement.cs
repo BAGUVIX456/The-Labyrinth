@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
     public int attackDamage;
     private float attackCooldownActual;
+    public AudioSource audioSource;
 
     private Vector2 _movement;
     private Vector2 facingLeft;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerControl = new PlayerControls();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -125,8 +127,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!isAttacking)
-            rb.MovePosition(rb.position + _movement * (speed * Time.fixedDeltaTime));
+        if (isAttacking)
+            return;
+                
+        rb.MovePosition(rb.position + _movement * (speed * Time.fixedDeltaTime));
     }
 
     private void OnDrawGizmosSelected()
@@ -135,5 +139,11 @@ public class PlayerMovement : MonoBehaviour
             return;
             
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public void PlayFootstep(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 }
