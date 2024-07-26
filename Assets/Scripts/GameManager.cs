@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
+
+        isGameOver = false;
+        isGamePaused = false;
+        isWin = false;
+        PlayerMovement.enabled = true;
     }
 
     private void Update()
@@ -102,9 +107,6 @@ public class GameManager : MonoBehaviour
     
     public void RestartGame()
     {
-        isGameOver = false;
-        isWin = false;
-        isGamePaused = false;
         PlayerMovement.enabled = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Dungeon");

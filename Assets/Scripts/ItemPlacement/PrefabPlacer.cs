@@ -9,7 +9,7 @@ public class PrefabPlacer : MonoBehaviour
         for (int i = 0; i < numberOfMobs; i++)
         {
             Vector2Int spawnPoint = room.ElementAt(Random.Range(0, room.Count));
-            Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0);
+            Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0.1f);
             Instantiate(enemyInfo.Mob[0].sprite, spawnPosition, Quaternion.identity);
         }
     }
