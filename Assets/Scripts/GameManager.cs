@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public PlayerControls playerControl;
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
+    public GameObject winUI;
     public TextMeshProUGUI EnemyCounter;
     public PlayerMovement PlayerMovement;
     public static bool isGamePaused = false;
     public static bool isGameOver = false;
+    public static bool isWin = false;
     public int enemyCount;
 
     private InputAction quit;
@@ -42,7 +44,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (quit.ReadValue<float>() == 1 && !pauseButtonIsPressed && !isGameOver)
+        if (isWin)
+            return;
+        if (enemyCount <= 0)
+            Win();
+        
+        if (quit.ReadValue<float>() == 1 && !pauseButtonIsPressed && !isGameOver && !isWin)
         {
             pauseButtonIsPressed = true;
 
@@ -84,11 +91,20 @@ public class GameManager : MonoBehaviour
         PlayerMovement.enabled = false;
         Time.timeScale = 0f;
     }
+
+    public void Win()
+    {
+        isWin = true;
+        winUI.SetActive(true);
+        PlayerMovement.enabled = false;
+        Time.timeScale = 0f;
+    }
     
     public void RestartGame()
     {
         isGameOver = false;
-        gameOverUI.SetActive(false);
+        isWin = false;
+        isGamePaused = false;
         PlayerMovement.enabled = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Dungeon");
