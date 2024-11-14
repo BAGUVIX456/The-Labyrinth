@@ -34,14 +34,11 @@
 <summary>Table of Contents</summary>
 
 - [About The Project](#about-the-project)
-  - [Supports](#supports)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
+  - [Setup](#setup)
 - [Contact](#contact)
   - [Maintainer(s)](#maintainers)
-  - [creators(s)](#creators)
 - [Additional documentation](#additional-documentation)
 
 </details>
