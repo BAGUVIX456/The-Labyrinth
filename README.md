@@ -52,7 +52,7 @@
 <!-- UPDATE -->
 <div align="center">
   <a href="https://github.com/BAGUVIX456/The-Labyrinth">
-    <img width="80%" alt="image" src="https://user-images.githubusercontent.com/86282911/206632547-a3b34b47-e7ae-4186-a1e6-ecda7ddb38e6.png">
+    <img width="80%" alt="image" src="https://github.com/user-attachments/assets/caa231cb-22bb-4f99-8eda-eaa6dd050b99">
   </a>
 </div>
 
@@ -68,7 +68,7 @@ To set up the project for development, follow the steps below.
 
 ### Prerequisites
 1. This game is made in `Unity 2022.3.10f1`. Make sure you have the correct version of the Editor installed before opening the project.
-2. Make sure you have configured git for Unity development by following this tutorial.
+2. Make sure you have configured git for Unity development by following [this tutorial](https://gist.github.com/BAGUVIX456/9a5cfe64cfa6b52ecdbf45f1a31eb852).
 ```
 NOTE: Make sure to read the entire tutorial carefully and completely to prevent future headaches
 ```
@@ -96,6 +96,7 @@ _Now that the environment has been set up and configured, the next step is to in
 
 The currently active maintainer(s) of this project.
 
+
 <!-- UPDATE -->
 - [Dhanvith Nayak](https://github.com/BAGUVIX456)
 
@@ -104,8 +105,6 @@ The currently active maintainer(s) of this project.
 ## Additional documentation
 
   - [License](/LICENSE)
-  - [Code of Conduct](/.github/CODE_OF_CONDUCT.md)
-  - [Security Policy](/.github/SECURITY.md)
   - [Contribution Guidelines](/.github/CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
