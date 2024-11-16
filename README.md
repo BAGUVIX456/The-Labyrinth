@@ -91,11 +91,13 @@ _Now that the environment has been set up and configured, the next step is to in
 
 ### Maintainer(s)
 
-The currently active maintainer(s) of this project.
+The currently active maintainer of this project.
 
 
 <!-- UPDATE -->
 - [Dhanvith Nayak](https://github.com/BAGUVIX456)
+
+Join the discord server to connect with other contributors: [Invite link](https://discord.gg/ynmKETw9sh)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
