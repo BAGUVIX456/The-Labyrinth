@@ -69,6 +69,7 @@ To set up the project for development, follow the steps below.
 ```
 NOTE: Make sure to read the entire tutorial carefully and completely to prevent future headaches
 ```
+3. Read the [Contributing Guidelines](/.github/CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -97,7 +98,7 @@ The currently active maintainer of this project.
 <!-- UPDATE -->
 - [Dhanvith Nayak](https://github.com/BAGUVIX456)
 
-Join the discord server to connect with other contributors: [Invite link](https://discord.gg/ynmKETw9sh)
+Join the discord server to connect with other contributors: [Invite Link](https://discord.gg/ynmKETw9sh)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
