@@ -65,11 +65,7 @@ To set up the project for development, follow the steps below.
 
 ### Prerequisites
 1. This game is made in `Unity 2022.3.10f1`. Make sure you have the correct version of the Editor installed before opening the project.
-2. Make sure you have configured git for Unity development by following [this tutorial](https://gist.github.com/BAGUVIX456/9a5cfe64cfa6b52ecdbf45f1a31eb852).
-```
-NOTE: Make sure to read the entire tutorial carefully and completely to prevent future headaches
-```
-3. Read the [Contributing Guidelines](/.github/CONTRIBUTING.md)
+2. Read the [Contributing Guidelines](/.github/CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -77,12 +73,17 @@ NOTE: Make sure to read the entire tutorial carefully and completely to prevent 
 
 _Now that the environment has been set up and configured, the next step is to install the project locally on your system._
 <!-- UPDATE -->
-1. Clone the repository
+1. Fork this repository
+2. Clone the fork
    ```sh
-   git clone https://github.com/BAGUVIX456/The-Labyrinth.git
+   git clone https://github.com/<GITHUB-USERNAME>/The-Labyrinth.git
    ```
-2. Add the project folder to Unity Hub. This step ensures you have the required editor downloaded before opening the project
-3. Open the project from Unity Hub
+3. Make sure you have configured git for Unity development by following [this tutorial](https://gist.github.com/BAGUVIX456/     9a5cfe64cfa6b52ecdbf45f1a31eb852).
+```
+NOTE: Make sure to read the entire tutorial carefully and completely to prevent future headaches
+```
+4. Add the project folder to Unity Hub. This step ensures you have the required editor downloaded before opening the project
+5. Open the project from Unity Hub
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
