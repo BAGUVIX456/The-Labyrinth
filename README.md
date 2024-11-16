@@ -78,7 +78,7 @@ _Now that the environment has been set up and configured, the next step is to in
    ```sh
    git clone https://github.com/<GITHUB-USERNAME>/The-Labyrinth.git
    ```
-3. Make sure you have configured git for Unity development by following [this tutorial](https://gist.github.com/BAGUVIX456/     9a5cfe64cfa6b52ecdbf45f1a31eb852).
+3. Make sure you have configured git for Unity development by following [this tutorial](https://gist.github.com/BAGUVIX456/9a5cfe64cfa6b52ecdbf45f1a31eb852).
 ```
 NOTE: Make sure to read the entire tutorial carefully and completely to prevent future headaches
 ```
