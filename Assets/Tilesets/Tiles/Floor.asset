@@ -18,7 +18,6 @@ MonoBehaviour:
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 0}
     - {fileID: -248902635, guid: a7523d51016c97c4681193c5da4c5222, type: 3}
     - {fileID: -604529946, guid: a7523d51016c97c4681193c5da4c5222, type: 3}
     - {fileID: 1602255519, guid: a7523d51016c97c4681193c5da4c5222, type: 3}
