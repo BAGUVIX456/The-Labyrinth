@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc576a16a88317941bcce1efd6237706
+guid: 90ef381c018ceda47a7177b48946ed88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,34 +123,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Health_05_03_0
+      name: _AttackCombo2hit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aab98c2225b2604093688c8781fa87f
-      internalID: 1517913869
+      spriteID: b3e76f2b2282eb744bc699a7a43b08a7
+      internalID: 643235043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_1
+      name: _AttackCombo2hit_1
       rect:
         serializedVersion: 2
-        x: 144
+        x: 120
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3171ccbb8fa3ef4a90b0626ed9c70bc
-      internalID: -837507964
+      spriteID: 7cba6534702b68a47a33fe9f623ebcd7
+      internalID: 1716055657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_2
+      name: _AttackCombo2hit_2
       rect:
         serializedVersion: 2
-        x: 288
+        x: 240
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e8830aa11eb6aa4294ff998d6b0f92b
-      internalID: -495228393
+      spriteID: abcf922c36ff9fc4ea936b13cc076326
+      internalID: -1529319397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_3
+      name: _AttackCombo2hit_3
       rect:
         serializedVersion: 2
-        x: 432
+        x: 360
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acc9e608dd32459458ac76a3a5a69d95
-      internalID: 954806852
+      spriteID: 6080914549d90a54dabce6a9e98bf068
+      internalID: -1532571219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_4
+      name: _AttackCombo2hit_4
       rect:
         serializedVersion: 2
-        x: 576
+        x: 480
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 159769684fe931c4bbc087417621cd3b
-      internalID: -1480689935
+      spriteID: efb61cef9f345f94b867fd3f59532cdc
+      internalID: -1788984019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_5
+      name: _AttackCombo2hit_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 120
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8047442c9d9ad44eb7fd82b62dfbeb5
+      internalID: 1976865509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _AttackCombo2hit_6
       rect:
         serializedVersion: 2
         x: 720
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a28ac3d613c03d945b43b2f3234d6fb3
-      internalID: -1284957464
+      spriteID: 226802c825e17944faa52f539acc6495
+      internalID: -106899438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_6
+      name: _AttackCombo2hit_7
       rect:
         serializedVersion: 2
-        x: 864
+        x: 840
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dcd47dc78fb4c646ad4624f43206ef4
-      internalID: -1759404872
+      spriteID: e8a141c90a35fe345a1004484635f402
+      internalID: -753317861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_7
+      name: _AttackCombo2hit_8
       rect:
         serializedVersion: 2
-        x: 1008
+        x: 960
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87162f1985339414b860aa6d0bc09aab
-      internalID: 1097444223
+      spriteID: 34ef752cf528cfc478b9f660c5324ccf
+      internalID: -438338673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_05_03_8
+      name: _AttackCombo2hit_9
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1080
         y: 0
-        width: 144
-        height: 144
+        width: 120
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77187f105f391634baf5950edabe00a1
-      internalID: -646363068
+      spriteID: c794016c222ed2441b9514a320d2347f
+      internalID: -1749224071
       vertices: []
       indices: 
       edges: []
@@ -322,15 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Health_05_03_0: 1517913869
-      Health_05_03_1: -837507964
-      Health_05_03_2: -495228393
-      Health_05_03_3: 954806852
-      Health_05_03_4: -1480689935
-      Health_05_03_5: -1284957464
-      Health_05_03_6: -1759404872
-      Health_05_03_7: 1097444223
-      Health_05_03_8: -646363068
+      _AttackCombo2hit_0: 643235043
+      _AttackCombo2hit_1: 1716055657
+      _AttackCombo2hit_2: -1529319397
+      _AttackCombo2hit_3: -1532571219
+      _AttackCombo2hit_4: -1788984019
+      _AttackCombo2hit_5: 1976865509
+      _AttackCombo2hit_6: -106899438
+      _AttackCombo2hit_7: -753317861
+      _AttackCombo2hit_8: -438338673
+      _AttackCombo2hit_9: -1749224071
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

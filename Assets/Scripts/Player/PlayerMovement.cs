@@ -1,19 +1,26 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private PowerupCircleController powerupCircleController;
     private Animator animator;
     
     public float speed = 5f;
     public float attackCooldown = 0.1f;
+    public float powerUpAttackCooldown = 15.0f;
     public Transform attackPoint;
     public float attackRange = 0.5f;
+    public float attackRangeScale;
+    public float powerUpAttackRadiusRate = 1f;
     public LayerMask enemyLayers;
     public int attackDamage;
+    public int powerUpDamage;
     private float attackCooldownActual;
+    private float powerUpAttackCooldownActual;
     public AudioSource audioSource;
 
     private Vector2 _movement;
@@ -21,14 +28,23 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingLeft;
     private bool isAttacking;
     private bool attackPressed;
-    
+    private bool spaceHeld;
+    private float spaceHeldTime = 0.0f;
+    private float maxPowerupRadius = 35.0f;
+    private bool isPoweredUp = true;
+
     public PlayerControls playerControl;
     private InputAction move, attack;
+
+    private GameObject player;
+    private PowerupController powerupController;
 
     private void Awake()
     {
         playerControl = new PlayerControls();
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.Find("Player");
+        powerupController = player.GetComponent<PowerupController>();
     }
 
     private void OnEnable()
@@ -50,9 +66,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        powerupCircleController = GameObject.FindGameObjectWithTag("Powerup Attack").GetComponent<PowerupCircleController>();
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         attackCooldownActual = attackCooldown;
         attackPressed = false;
+        spaceHeld = false;
+        isPoweredUp = false;
     }
 
     private void Flip()
@@ -71,7 +90,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAttacking)
             attackCooldownActual -= Time.deltaTime;
+        if(isPoweredUp)
+        {
+            powerUpAttackCooldownActual -= Time.deltaTime;
+            if(powerUpAttackCooldownActual <= 0)
+            {
+                isPoweredUp = false;
+                powerupController.ShowPoweredUp();
+            } else {
+                powerupController.UpdateCooldown(powerUpAttackCooldownActual);
+            }
+            
+        }
         
+
         _movement = move.ReadValue<Vector2>();
 
         if (_movement == Vector2.zero)
@@ -111,6 +143,24 @@ public class PlayerMovement : MonoBehaviour
                 isAttacking = false;
             attackPressed = false;
         }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            if(!isPoweredUp) 
+            {
+                if(GetRadius(spaceHeldTime) <= maxPowerupRadius)
+                {
+                    spaceHeldTime += Time.deltaTime;
+                }
+                spaceHeld = true;
+                powerupCircleController.setRadius(GetRadius(spaceHeldTime));
+            }
+        }
+        else if(spaceHeld)
+        {
+            PowerUpAttack();
+            powerupController.HidePoweredUp();
+        }
     }
 
     void Attack()
@@ -122,6 +172,24 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+    }
+
+    void PowerUpAttack()
+    {
+        float radius = GetRadius(spaceHeldTime);
+        animator.SetTrigger("Powerup Attack");
+        
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(powerupCircleController.transform.position, radius*attackRangeScale, enemyLayers);
+        powerUpAttackCooldownActual = powerUpAttackCooldown;
+        powerupCircleController.setRadius(attackRange);
+        spaceHeld = false;
+        isPoweredUp = true;
+        spaceHeldTime = 0.0f;
+ 
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(powerUpDamage);
         }
     }
 
@@ -137,8 +205,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-            
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        if(spaceHeld)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(powerupCircleController.transform.position, GetRadius(spaceHeldTime)*attackRangeScale);
+        }
+    }
+
+    private float GetRadius(float timeHeld)
+    {
+        return attackRange/attackRangeScale + (timeHeld * powerUpAttackRadiusRate);
     }
 
     public void PlaySFX(AudioClip clip)
