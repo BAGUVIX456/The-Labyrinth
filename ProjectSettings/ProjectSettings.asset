@@ -680,11 +680,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4146e1bf-6852-4bb2-bba5-8bf8bd8dc426
+  cloudProjectId: e735fc61-455a-417e-b288-fa975b1dbe86
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: The Labyrinth
-  organizationId: snkv
+  organizationId: high_entropy
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
