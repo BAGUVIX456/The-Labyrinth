@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour
     private double angleChange;
     private float distance;
     private float wanderSpeedActual;
-    private float initialPosition;
     private bool attackBlocked;
     private int currentHealth;
 
@@ -47,7 +46,6 @@ public class Enemy : MonoBehaviour
         agent.updateUpAxis = false;
         agent.speed = chaseSpeed;
         wanderSpeedActual = wanderSpeed;
-        initialPosition = transform.position.x;
         currentHealth = maxHealth;
 
         target = GameObject.Find("Player");
@@ -82,12 +80,11 @@ public class Enemy : MonoBehaviour
             AttackPlayer();
         }
         
-        if (transform.position.x < initialPosition)
+        if (target.transform.position.x < transform.position.x)
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
-        else if (transform.position.x > initialPosition)
+        else if (target.transform.position.x > transform.position.x)
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         
-        initialPosition = transform.position.x;
     }
     
     private void GetRandomDirectionChange()
